@@ -1,4 +1,4 @@
-package dustin;
+package string;
 
 import java.util.HashMap;
 
