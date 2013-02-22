@@ -1,6 +1,10 @@
 package string;
 
-public class Reverse {
+import junit.framework.TestCase;
+
+import org.junit.Test;
+
+public class Reverse extends TestCase {
 
 	public static final int WORD = 1;
 	public static final int SENTENCE = 2;
@@ -58,7 +62,7 @@ public class Reverse {
 					reverseWordRecursive(word.substring(0, word.length()-1));
 	}
 	
-	public void testReverse(int option, String value) {
+	public String testReverse(int option, String value) {
 		String result = null;
 		if(option == Reverse.WORD) {
 			System.out.println("Testing Word Reversal");
@@ -78,6 +82,7 @@ public class Reverse {
 		System.out.println("Original: " + value);
 		System.out.println("Reversed: " + result);
 		System.out.println("------------------");
+		return result;
 	}
 	
 	public void testReverse(int option, String value, int iterations) {
@@ -107,15 +112,15 @@ public class Reverse {
 		System.out.println("------------------");
 	}
 	
-	public static void main(String[] args) {
-		Reverse reverse = new Reverse();
-		reverse.testReverse(Reverse.WORD, "nabby");
-		//reverse.testReverse(Reverse.SENTENCE, "nabby", 1000);
-		//reverse.testReverse(Reverse.R_WORD, "nabby", 1000);
-		//reverse.testReverse(Reverse.R_SENTENCE, "nabby", 1000);
-		reverse.testReverse(Reverse.WORD, "Lets reverse this sentence");
-		//reverse.testReverse(Reverse.SENTENCE, "Lets reverse this sentence", 1000);
-		//reverse.testReverse(Reverse.R_WORD, "Lets reverse this sentence", 1000);
-		//reverse.testReverse(Reverse.R_SENTENCE, "Lets reverse this sentence", 1000);
+	@Test
+	public void testReverse() {
+		assert("ybban".equals(testReverse(Reverse.WORD, "nabby")));
+		assert("nabby".equals(testReverse(Reverse.SENTENCE, "nabby")));
+		assert("ybban".equals(testReverse(Reverse.R_WORD, "nabby")));
+		assert("nabby".equals(testReverse(Reverse.R_SENTENCE, "nabby")));
+		assert("ecentnes siht esrever steL".equals(testReverse(Reverse.WORD, "Lets reverse this sentence")));
+		assert("sentence this reverse Lets".equals(testReverse(Reverse.SENTENCE, "Lets reverse this sentence")));
+		assert("ecentnes siht esrever steL".equals(testReverse(Reverse.R_WORD, "Lets reverse this sentence")));
+		assert("sentence this reverse Lets".equals(testReverse(Reverse.R_SENTENCE, "Lets reverse this sentence")));
 	}
 }

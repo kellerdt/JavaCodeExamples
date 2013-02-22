@@ -1,6 +1,10 @@
 package string;
 
-public class Palindrome {
+import junit.framework.TestCase;
+
+import org.junit.Test;
+
+public class Palindrome extends TestCase {
 
 	public boolean checkPalindrome(String text) {
 		boolean result = true;
@@ -30,7 +34,7 @@ public class Palindrome {
 		}
 	}
 	
-	public void testPalindrome(String text, boolean recursive) {
+	public boolean runTest(String text, boolean recursive) {
 		Boolean result = null;
 		if(recursive) {
 			System.out.println("Testing Text For A Palindrome Recursively");
@@ -42,15 +46,16 @@ public class Palindrome {
 		System.out.println("Text: " + text);
 		System.out.println("Is Palindrome: " + result);
 		System.out.println("--------------");
+		return result;
 	}
 	
-	public static void main(String[] args) {
-		Palindrome palindrome = new Palindrome();
-		palindrome.testPalindrome("hello", false);
-		palindrome.testPalindrome("hello", true);
-		palindrome.testPalindrome("racecar", false);
-		palindrome.testPalindrome("racecar", true);
-		palindrome.testPalindrome("butterrettub", false);
-		palindrome.testPalindrome("butterrettub", true);
+	@Test
+	public void testPalindromes() {
+		assertFalse(runTest("hello", false));
+		assertFalse(runTest("hello", true));
+		assertTrue(runTest("racecar", false));
+		assertTrue(runTest("racecar", true));
+		assertTrue(runTest("butterrettub", false));
+		assertTrue(runTest("butterrettub", true));
 	}
 }

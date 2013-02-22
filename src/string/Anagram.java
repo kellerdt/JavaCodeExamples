@@ -2,7 +2,11 @@ package string;
 
 import java.util.HashMap;
 
-public class Anagram {
+import junit.framework.TestCase;
+
+import org.junit.Test;
+
+public class Anagram extends TestCase {
 
 	private HashMap<Character, Integer> map = null;
 	
@@ -61,7 +65,7 @@ public class Anagram {
 	    return true;
 	}
 	
-	public void testAnagramIterative(String a, String b) {
+	public boolean anagramIterative(String a, String b) {
 		Long start = System.currentTimeMillis();
 		boolean result = detectAnagramIterative(a, b);
 		Long finish = System.currentTimeMillis();
@@ -69,9 +73,10 @@ public class Anagram {
 		System.out.println("Comparing " + a + " and " + b);
 		System.out.println("Result = " + result + " Runtime = " + start + " - " + finish + " = " + (finish - start));
 		System.out.println("--------------------");
+		return result;
 	}
 	
-	public void testAnagramRecursive(String a, String b) {
+	public boolean anagramRecursive(String a, String b) {
 		Long start = System.currentTimeMillis();
 		boolean result = detectAnagramRecursive(a, b);
 		Long finish = System.currentTimeMillis();
@@ -79,21 +84,22 @@ public class Anagram {
 		System.out.println("Comparing " + a + " and " + b);
 		System.out.println("Result = " + result + " Runtime = " + start + " - " + finish + " = " + (finish - start));
 		System.out.println("--------------------");
+		return result;
 	}
 	
-	public static void main(String[] args) {
-		Anagram anagram = new Anagram();
-		anagram.testAnagramIterative("god", "dog");
-		anagram.testAnagramRecursive("god", "dog");
-		anagram.testAnagramIterative("Hello", "hello");
-		anagram.testAnagramRecursive("Hello", "hello");
-		anagram.testAnagramIterative(
+	@Test
+	public void testResults() {
+		assertTrue(anagramIterative("god", "dog"));
+		assertTrue(anagramRecursive("god", "dog"));
+		assertFalse(anagramIterative("Hello", "hello"));
+		assertFalse(anagramRecursive("Hello", "hello"));
+		assertTrue(anagramIterative(
 				"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
-				"zyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcba");
-		anagram.testAnagramRecursive(
+				"zyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcba"));
+		assertTrue(anagramIterative(
 				"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
-				"zyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcba");
-		anagram.testAnagramIterative("", "");
-		anagram.testAnagramRecursive("", "");
+				"zyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcba"));
+		assertTrue(anagramIterative("", ""));
+		assertTrue(anagramRecursive("", ""));
 	}
 }
