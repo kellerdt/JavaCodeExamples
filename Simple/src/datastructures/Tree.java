@@ -1,4 +1,4 @@
-package dustin;
+package datastructures;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
-public class DataStructures {
+public class Tree {
 
 	public TreeNode buildTree() {
 		TreeNode root = new TreeNode(0);
@@ -116,7 +116,7 @@ public class DataStructures {
 	}
 	
 	public static void main(String[] args) {
-		DataStructures data = new DataStructures();
+		Tree data = new Tree();
 		data.depthFirstSearchWithStackPreVisit();
 		System.out.println("-----------------------");
 		data.depthFirstSearchWithStackPostVisit();

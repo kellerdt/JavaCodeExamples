@@ -1,5 +1,13 @@
-bin/
+# Excluded Simple project files #
+Simple/.settings/
+Simple/bin/
 
+# Excluded HeatMap project files #
+HeatMap/.settings/
+HeatMap/target/
+HeatMap/worktime.txt
+
+# Excluded file types #
 *.class
 .classpath
 .project
