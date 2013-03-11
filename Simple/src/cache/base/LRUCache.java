@@ -1,4 +1,4 @@
-package cache;
+package cache.base;
 
 import java.util.ArrayList;
 import java.util.HashMap;
