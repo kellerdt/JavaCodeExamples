@@ -1,4 +1,4 @@
-package dustin;
+package random;
 
 import java.math.BigInteger;
 

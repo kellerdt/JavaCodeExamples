@@ -1,4 +1,4 @@
-package dustin;
+package random;
 
 import java.util.ArrayList;
 import java.util.HashMap;
