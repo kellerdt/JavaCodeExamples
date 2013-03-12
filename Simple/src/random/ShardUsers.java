@@ -30,15 +30,17 @@ public class ShardUsers {
 		return Integer.MIN_VALUE;
 	}
 	
-	public void setNumberOfServers(int num) {
-		synchronized(this) {
+	// Only one thread can update the number of servers at a time since it is an
+	// expensive operation.  Also check if the value is actually different
+	public synchronized void setNumberOfServers(int num) {
+		if(num != this.numServers) {
 			this.updating = true;
 			this.prevNumServers = this.numServers;
 			this.numServers = num;
 			this.rehashUsers();
 			this.updating = false;
+			this.notifyAll();
 		}
-		this.notifyAll();
 	}
 	
 	/* Private implementation methods */
