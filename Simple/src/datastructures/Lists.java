@@ -15,7 +15,7 @@ public class Lists extends TestCase {
 		List<V> merged = new ArrayList<V>(a.size() + b.size());
 		int i=0, j=0;
 		for( ; i < a.size() && j < b.size(); ) {
-			if(a.get(i).compareTo(b.get(0)) >= 0) {
+			if(a.get(i).compareTo(b.get(j)) >= 0) {
 				merged.add(b.get(j));
 				j++;
 			} else {

@@ -18,6 +18,8 @@ public class ShardUsers {
 	
 	// Can't calculate a shard if were in the process of changing so we have
 	// to wait until its ready for notification
+	//
+	// This implements conditional synchronization
 	public int calculateShard(Integer userId) {
 		try {
 			while(this.updating) {
@@ -32,6 +34,8 @@ public class ShardUsers {
 	
 	// Only one thread can update the number of servers at a time since it is an
 	// expensive operation.  Also check if the value is actually different
+	//
+	// This is an example of a guarded action in conditional synchronization
 	public synchronized void setNumberOfServers(int num) {
 		if(num != this.numServers) {
 			this.updating = true;
